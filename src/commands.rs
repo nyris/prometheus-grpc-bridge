@@ -21,9 +21,8 @@ pub fn build_command() -> Command {
                 .long("serve")
                 .env("HTTP_SERVER_BIND_ADDRESS")
                 .value_name("ADDRESS")
-                .default_missing_value("127.0.0.1:80")
+                .default_missing_value("0.0.0.0:80")
                 .help("The HTTP address to bind to")
-                .num_args(1)
                 .help_heading("Server")
                 .value_parser(parse_socketaddr),
         )
