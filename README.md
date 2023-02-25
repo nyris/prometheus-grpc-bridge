@@ -57,7 +57,7 @@ message PrometheusMetricsResponse {
 ### Example server
 
 This project comes with a Rust example server based on Tonic.
-To run the server, execute
+To run the server defined in [`examples/grpc_server.rs`], execute
 
 ```shell
 cargo run --example grpc_server
@@ -79,3 +79,4 @@ grpcurl -plaintext localhost:11000 prometheus.PrometheusMetrics/Metrics
 [Exposition formats]: https://github.com/prometheus/docs/blob/0ac960bbc57d9a229848f785934455c0f6344a9c/content/docs/instrumenting/exposition_formats.md
 [`prometheus.proto`]: protos/prometheus.proto
 [`RUST_LOG`]: https://docs.rs/env_logger/0.10.0/env_logger/#enabling-logging
+[`examples/grpc_server.rs`]: examples/grpc_server.rs
