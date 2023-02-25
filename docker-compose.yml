@@ -11,6 +11,7 @@ services:
     environment:
       GRPC_SERVER_CONNECT_ADDRESS: "example:11000"
       GRPC_SERVER_CONNECT_SCHEME: "http"
+      HTTP_SERVER_LOG_STYLE: "simple"
     ports:
       - "8080:80"
 
