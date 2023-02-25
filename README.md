@@ -7,7 +7,15 @@ for when you cannot host gRPC and HTTP at the same time.
 
 The server supports both HTTP/1.1 and HTTP/2 transparently without
 requiring a secure connection to perform ALPN.
-To host the service locally, run e.g.
+
+For a complete example, see [`docker-compose.yml`]. You can start
+both the bridge and an example server by running:
+
+```shell
+docker compose up
+```
+
+To instead host the service locally, run e.g.
 
 ```shell
 cargo run -- --serve 0.0.0.0:8080
@@ -80,3 +88,4 @@ grpcurl -plaintext localhost:11000 prometheus.PrometheusMetrics/Metrics
 [`prometheus.proto`]: protos/prometheus.proto
 [`RUST_LOG`]: https://docs.rs/env_logger/0.10.0/env_logger/#enabling-logging
 [`examples/grpc_server.rs`]: examples/grpc_server.rs
+[`docker-compose.yml`]: docker-compose.yml
