@@ -2,9 +2,18 @@ use crate::logging::LoggingStyle;
 use clap::{Arg, Command};
 use std::net::{AddrParseError, SocketAddr, ToSocketAddrs};
 
+const APP_VERSION: &'static str = concat!(
+    env!("CARGO_PKG_VERSION"),
+    " (",
+    env!("VERGEN_GIT_SHA_SHORT"),
+    " ",
+    env!("VERGEN_BUILD_DATE"),
+    ")"
+);
+
 pub fn build_command() -> Command {
-    let command = Command::new("Metrics Client")
-        .version("0.1.0")
+    let command = Command::new("Prometheus gRPC Bridge")
+        .version(APP_VERSION)
         .author("Markus Mayer <m.mayer@nyris.io>")
         .about("Read Prometheus Metrics")
         .arg(
