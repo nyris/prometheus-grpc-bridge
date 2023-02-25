@@ -13,6 +13,8 @@ dotenvy = "0.15.6"
 prost = "0.11.8"
 tonic = { version = "0.8.3", features = ["gzip"] }
 tokio = { version = "1.25.0", features = ["full"] }
+tracing = { version = "0.1.37", features = ["attributes", "release_max_level_info"] }
+tracing-subscriber = { version = "0.3.16", features = ["env-filter", "parking_lot", "tracing-log", "json"] }
 warp = { version = "0.3.3", features = ["async-compression", "compression"] }
 
 [build-dependencies]

@@ -1,12 +1,15 @@
 mod commands;
+mod logging;
 
 use crate::commands::build_command;
+use crate::logging::LoggingStyle;
 use crate::pb::{PrometheusMetricsRequest, PrometheusMetricsResponse};
 use dotenvy::dotenv;
 use pb::prometheus_metrics_client::PrometheusMetricsClient;
 use std::net::SocketAddr;
 use tonic::codec::CompressionEncoding;
 use tonic::transport::{Channel, Uri};
+use tracing::{debug, instrument};
 use warp::{Filter, Rejection, Reply};
 
 mod pb {
@@ -18,6 +21,9 @@ async fn main() {
     dotenv().ok();
 
     let matches = build_command().get_matches();
+
+    let logging_style: &LoggingStyle = matches.get_one("logging_style").unwrap();
+    logging::initialize(*logging_style);
 
     let grpc_address: &String = matches.get_one("grpc_address").unwrap();
     let grpc_scheme: &String = matches.get_one("grpc_scheme").unwrap();
@@ -54,7 +60,10 @@ async fn metrics(channel: Channel) -> Result<impl Reply, Rejection> {
     Ok(response.text)
 }
 
+#[instrument(level = "debug", skip(channel))]
 async fn get_metrics_from_server(channel: Channel) -> PrometheusMetricsResponse {
+    debug!("Fetching metrics from gRPC target");
+
     let mut client = PrometheusMetricsClient::new(channel)
         .send_compressed(CompressionEncoding::Gzip)
         .accept_compressed(CompressionEncoding::Gzip);

@@ -1,3 +1,4 @@
+use crate::logging::LoggingStyle;
 use clap::{Arg, Command};
 use std::net::{AddrParseError, SocketAddr, ToSocketAddrs};
 
@@ -39,6 +40,18 @@ pub fn build_command() -> Command {
                 .help("The gRPC scheme to use, e.g. http or https")
                 .num_args(1)
                 .help_heading("Endpoint"),
+        )
+        .arg(
+            Arg::new("logging_style")
+                .short('l')
+                .long("log")
+                .env("HTTP_SERVER_LOG_STYLE")
+                .value_name("STYLE")
+                .default_value("simple")
+                .help("The logging style to use (simple, json)")
+                .num_args(1)
+                .value_parser(logging_style)
+                .help_heading("Logging"),
         );
     command
 }
@@ -57,4 +70,14 @@ fn parse_socketaddr(value: &str) -> Result<SocketAddr, String> {
 fn parse_address(value: &str) -> Result<String, String> {
     let _ = value.to_socket_addrs().map_err(|e| e.to_string())?;
     Ok(String::from(value))
+}
+
+/// Validates and parses the logging style.
+fn logging_style(s: &str) -> Result<LoggingStyle, String> {
+    match s {
+        "simple" => Ok(LoggingStyle::Compact),
+        "compact" => Ok(LoggingStyle::Compact),
+        "json" => Ok(LoggingStyle::Json),
+        _ => Err(String::from("Either simple or json must be specified")),
+    }
 }

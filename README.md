@@ -20,6 +20,14 @@ curl http://localhost:8080/metrics
 nghttp http://localhost:8080/metrics
 ````
 
+The server's log output can be controlled using the [`RUST_LOG`] environment variable.
+To switch between plain and JSON log output, provide the `--log simple` or
+`--log json` argument respectively:
+
+```shell
+cargo run -- --serve 0.0.0.0:8080 --log json
+```
+
 ## Protocol
 
 The gRPC protocol is kept simple and assumes the metrics can already
@@ -46,3 +54,4 @@ message PrometheusMetricsResponse {
 
 [Exposition formats]: https://github.com/prometheus/docs/blob/0ac960bbc57d9a229848f785934455c0f6344a9c/content/docs/instrumenting/exposition_formats.md
 [`prometheus.proto`]: protos/prometheus.proto
+[`RUST_LOG`]: https://docs.rs/env_logger/0.10.0/env_logger/#enabling-logging
