@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package prometheus;
+
+service PrometheusMetrics {
+  // Fetches metrics from the server.
+  rpc Metrics(PrometheusMetricsRequest) returns (PrometheusMetricsResponse) {}
+}
+
+message PrometheusMetricsRequest {
+}
+
+message PrometheusMetricsResponse {
+  // The metrics as a string in Prometheus text format.
+  string text = 1;
+}

@@ -1,0 +1,18 @@
+[package]
+name = "prometheus-grpc-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "A gRPC client CLI to fetch Prometheus metrics from the Barcode API"
+repository = "https://git.nyris.io/vision/barcodes/barcode-api"
+authors = ["Markus Mayer <m.mayer@nyris.io>"]
+rust-version = "1.67.1"
+
+[dependencies]
+clap = { version = "4.1.6", features = ["env"] }
+dotenvy = "0.15.6"
+prost = "0.11.8"
+tonic = { version = "0.8.3", features = ["gzip"] }
+tokio = { version = "1.25.0", features = ["full"] }
+
+[build-dependencies]
+tonic-build = "0.8.4"
