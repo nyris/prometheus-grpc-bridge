@@ -28,6 +28,8 @@ To switch between plain and JSON log output, provide the `--log simple` or
 cargo run -- --serve 0.0.0.0:8080 --log json
 ```
 
+Note that logging of debug level and below is disabled in release builds.
+
 ## Protocol
 
 The gRPC protocol is kept simple and assumes the metrics can already
