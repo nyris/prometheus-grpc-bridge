@@ -1,9 +1,21 @@
 # Prometheus gRPC Bridge
 
-A Prometheus metrics endpoint bridging data from a gRPC service,
+A Prometheus `/metrics` endpoint bridging data from a gRPC service,
 for when you cannot host gRPC and HTTP at the same time.
 
 ## HTTP /metrics endpoint
+
+When running the service using Docker, provide the `GRPC_SERVER_CONNECT_ADDRESS`
+environment variable with the host and port combination of the gRPC server to addess:
+
+```shell
+docker run --rm \
+  --env GRPC_SERVER_CONNECT_ADDRESS="example:11000" \
+  --publish 80:80 \
+  nyris/prometheus-grpc-bridge:0.1.0
+```
+
+You can optionally provide `GRPC_SERVER_CONNECT_SCHEME` as well, this defaults to `http`.
 
 The server supports both HTTP/1.1 and HTTP/2 transparently without
 requiring a secure connection to perform ALPN.
@@ -15,7 +27,9 @@ both the bridge and an example server by running:
 docker compose up
 ```
 
-To instead host the service locally, run e.g.
+## Testing locally
+
+To host the service locally, run e.g.
 
 ```shell
 cargo run -- --serve 0.0.0.0:8080
