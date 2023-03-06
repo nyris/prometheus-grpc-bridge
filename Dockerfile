@@ -21,10 +21,11 @@ RUN cargo auditable install --example grpc_server --path /usr/src/prometheus-grp
 
 FROM debian:bullseye-slim
 
+LABEL org.opencontainers.artifact.description = "A server to bridge Prometheus metrics from gRPC to HTTP"
 LABEL org.opencontainers.image.vendor = "nyris GmbH"
 LABEL org.opencontainers.image.title = "prometheus-grpc-bridge"
 LABEL org.opencontainers.image.description = "A server to bridge Prometheus metrics from gRPC to HTTP"
-LABEL org.opencontainers.artifact.description = "A server to bridge Prometheus metrics from gRPC to HTTP"
+LABEL org.opencontainers.image.base.name = "registry.example.com/nyris/prometheus-grpc-bridge:0.1.0"
 LABEL org.opencontainers.image.url="https://github.com/nyris/prometheus-grpc-bridge"
 LABEL org.opencontainers.image.documentation="https://github.com/nyris/prometheus-grpc-bridge"
 LABEL org.opencontainers.image.source = "https://github.com/nyris/prometheus-grpc-bridge.git"
