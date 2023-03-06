@@ -89,3 +89,9 @@ grpcurl -plaintext localhost:11000 prometheus.PrometheusMetrics/Metrics
 [`RUST_LOG`]: https://docs.rs/env_logger/0.10.0/env_logger/#enabling-logging
 [`examples/grpc_server.rs`]: examples/grpc_server.rs
 [`docker-compose.yml`]: docker-compose.yml
+
+## License
+
+If not mentioned otherwise in a file, the content provided is
+licensed under the EUPL v1.2, a copy of which can be found in 
+[LICENSE.md](LICENSE.md).

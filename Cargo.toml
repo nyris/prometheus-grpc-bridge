@@ -2,10 +2,13 @@
 name = "prometheus-grpc-bridge"
 version = "0.1.0"
 edition = "2021"
+license = "EUPL-1.2"
 description = "A gRPC client CLI to fetch Prometheus metrics from the Barcode API"
 repository = "https://git.nyris.io/vision/barcodes/barcode-api"
 authors = ["Markus Mayer <m.mayer@nyris.io>"]
 rust-version = "1.67.1"
+keywords = ["metrics", "prometheus", "grpc"]
+categories = ["visualization", "api-bindings"]
 
 [[example]]
 name = "grpc_server"
