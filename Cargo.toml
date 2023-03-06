@@ -1,6 +1,6 @@
 [package]
 name = "prometheus-grpc-bridge"
-version = "0.1.0"
+version = "0.2.0-unstable"
 edition = "2021"
 license = "EUPL-1.2"
 description = "A gRPC client CLI to fetch Prometheus metrics from the Barcode API"
